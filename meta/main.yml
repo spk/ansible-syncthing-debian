@@ -1,0 +1,17 @@
+---
+galaxy_info:
+  author: Laurent Arnoud
+  description: provides syncthing debian packages
+  license: BSD
+  min_ansible_version: 1.8
+  platforms:
+    - name: Debian
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+  categories:
+    - system
+    - networking
+  dependencies: []

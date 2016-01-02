@@ -1,0 +1,4 @@
+[Syncthing]
+title=Syncthing
+description=Open Source Continuous File Synchronization
+ports=22000/tcp|21025/udp
