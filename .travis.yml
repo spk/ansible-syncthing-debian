@@ -10,7 +10,7 @@ env:
 
 before_install:
   - sudo apt-get update -qq
-  - sudo apt-get install -y curl ca-certificates
+  - sudo apt-get install -y curl ca-certificates python-apt python-pycurl
 
 install:
   - pip install ansible
