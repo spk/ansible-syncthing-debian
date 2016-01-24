@@ -10,6 +10,8 @@ Default:
 syncthing_version: "0.12.10"
 syncthing_pin_priority: 600
 syncthing_use_ufw: false
+syncthing_apt_key_url: 'https://syncthing.net/release-key.txt'
+syncthing_apt_repository_url: 'https://apt.syncthing.net/'
 ~~~
 
 # Dependencies

@@ -5,12 +5,12 @@
 
 - name: Import syncthing GPG key to apt
   apt_key:
-    url: 'https://syncthing.net/release-key.txt'
+    url: "{{ syncthing_apt_key_url }}"
     state: present
 
 - name: Add syncthing repository
   apt_repository:
-    repo: 'deb http://apt.syncthing.net/ syncthing release'
+    repo: 'deb {{ syncthing_apt_repository_url }} syncthing release'
     state: present
 
 - name: Add syncthing repository preferences
