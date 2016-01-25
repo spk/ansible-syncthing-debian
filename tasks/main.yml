@@ -1,4 +1,15 @@
 ---
+- name: Ensure the system can use the HTTPS transport for APT
+  stat:
+    path: /usr/lib/apt/methods/https
+  register: apt_https_transport
+
+- name: Install HTTPS transport for APT
+  apt:
+    pkg: apt-transport-https
+    state: installed
+  when: not apt_https_transport.stat.exists
+
 - name: Check syncthing_version variable
   assert:
     that: syncthing_version in ["0.12.10"]
