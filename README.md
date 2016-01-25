@@ -23,3 +23,6 @@ None
 (c) 2016 Laurent Arnoud <laurent@spkdev.net>
 
 BSD
+
+---
+[![Build](https://img.shields.io/travis-ci/spk/ansible-syncthing-debian.svg)](https://travis-ci.org/spk/ansible-syncthing-debian)
