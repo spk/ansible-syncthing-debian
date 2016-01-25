@@ -1,17 +1,8 @@
 ---
 sudo: required
-dist: precise
-language: python
-python: 2.7.11
 
-env:
-  - SITE=test.yml
-
-install:
-  - pip install ansible ansible-lint --upgrade
-  - ansible --version
-  - "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
+services:
+  - docker
 
 script:
-  - "ansible-playbook -i tests/inventory tests/$SITE --syntax-check"
-  - "ansible-lint tests/$SITE"
+  - docker build .
