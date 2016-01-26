@@ -10,10 +10,6 @@
     state: installed
   when: not apt_https_transport.stat.exists
 
-- name: Check syncthing_version variable
-  assert:
-    that: syncthing_version in ["0.12.10"]
-
 - name: Import syncthing GPG key to apt
   apt_key:
     url: "{{ syncthing_apt_key_url }}"
