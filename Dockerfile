@@ -7,7 +7,7 @@ ENV PYTHONUNBUFFERED 1
 
 WORKDIR ${WORKDIR}
 RUN apt-get update -qq \
-    && apt-get -y --no-install-recommends install ansible python-pip \
+    && apt-get -y --no-install-recommends install ansible python-setuptools python-pip \
     && apt-get purge -y \
     && apt-get autoremove -y \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
