@@ -12,7 +12,7 @@
     - syncthing-configure-directories
 
 # - debug: var=hostvars[inventory_hostname]
-- debug: var=groups
+# - debug: var=groups
 
 - name: configure | ensure uptodate configuration file
   template:
