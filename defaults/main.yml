@@ -1,4 +1,4 @@
-syncthing_version: "0.12.25"
+syncthing_version: "0.13.10"
 syncthing_pin_priority: 600
 syncthing_use_ufw: false
 syncthing_apt_key_url: 'https://syncthing.net/release-key.txt'
