@@ -12,6 +12,7 @@ RUN apt-get update -qq \
     && apt-get autoremove -y \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 RUN pip install ansible-lint
+RUN useradd syncthing
 ADD . ${WORKDIR}
 ADD . /etc/ansible/roles/${ROLE_NAME}
 ADD ./tests/inventory /etc/ansible/hosts
