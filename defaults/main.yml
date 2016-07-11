@@ -10,9 +10,10 @@ syncthing_system_user_home: "/home/{{ syncthing_system_user }}"
 syncthing_system_syncthing_home: "/home/{{ syncthing_system_user }}/.config/syncthing"
 
 syncthing_folders:
-  default:
+  - id: default
     label: Default
     path: "/home/{{ syncthing_system_user }}/Sync"
+    shared_with_groups: []
 
 syncthing_net_hosts: []
 syncthing_net_groups: []
