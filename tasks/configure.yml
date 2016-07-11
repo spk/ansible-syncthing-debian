@@ -1,4 +1,3 @@
-# tasks file for syncthing
 ---
 - name: configure | ensure directory exists
   file:
@@ -10,9 +9,6 @@
     recurse: yes
   tags:
     - syncthing-configure-directories
-
-# - debug: var=hostvars[inventory_hostname]
-# - debug: var=groups
 
 - name: configure | ensure uptodate configuration file
   template:
