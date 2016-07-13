@@ -1,0 +1,43 @@
+---
+- name: configure | ensure directory exists
+  file:
+    path: "{{ syncthing_system_user_home }}/.config/syncthing"
+    state: directory
+    owner: "{{ syncthing_system_user }}"
+    group: "{{ syncthing_system_group }}"
+    mode: 0755
+    recurse: yes
+  tags:
+    - syncthing-configure-directories
+
+- name: configure | ensure uptodate configuration file
+  template:
+    src: .config/syncthing/config.xml.j2
+    dest: "{{ syncthing_system_user_home }}/.config/syncthing/config.xml"
+    owner: "{{ syncthing_system_user }}"
+    group: "{{ syncthing_system_group }}"
+    mode: 0640
+  # TODO : present + absent folders when possible (following supervisor role vars design)
+  notify: restart syncthing
+  tags:
+    - syncthing-configure-configuration
+
+
+- name: configure | ensure sync folders exists
+  file:
+    path: "{{ item.path }}"
+    state: directory
+    owner: "{{ syncthing_system_user }}"
+    group: "{{ syncthing_system_group }}"
+    mode: 0755
+    recurse: yes
+  with_items: "{{ syncthing_folders }}"
+
+- name: configure | ensure uptodate ignore patterns
+  blockinfile:
+    dest: "{{ item.path }}/.stignore"
+    block: |
+      "{{ item.ignore_patterns | join('\n') }}"
+    create: yes
+  with_items: "{{ syncthing_folders }}"
+  when: item.ignore_patterns is defined

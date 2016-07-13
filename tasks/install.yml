@@ -1,0 +1,51 @@
+---
+- name: Ensure the system can use the HTTPS transport for APT
+  become: yes
+  stat:
+    path: /usr/lib/apt/methods/https
+  register: apt_https_transport
+
+- name: Install HTTPS transport for APT
+  become: yes
+  apt:
+    pkg: apt-transport-https
+    state: installed
+  when: not apt_https_transport.stat.exists
+
+- name: Import syncthing GPG key to apt
+  become: yes
+  apt_key:
+    url: "{{ syncthing_apt_key_url }}"
+    state: present
+
+- name: Add syncthing repository
+  become: yes
+  apt_repository:
+    repo: 'deb {{ syncthing_apt_repository_url }} syncthing release'
+    state: present
+
+- name: Add syncthing repository preferences
+  become: yes
+  template:
+    src: apt_syncthing.pref.2
+    dest: /etc/apt/preferences.d/syncthing.pref
+
+- name: Install syncthing
+  become: yes
+  apt:
+    pkg: syncthing={{ syncthing_version }}
+    state: installed
+
+- name: Install ufw syncthing rules
+  become: yes
+  copy:
+    src: ufw-syncthing
+    dest: /etc/ufw/applications.d/ufw-syncthing
+    owner: root
+    mode: 0644
+  when: syncthing_use_ufw
+
+- name: Allow syncthing ufw
+  become: yes
+  ufw: rule=allow name=syncthing
+  when: syncthing_use_ufw

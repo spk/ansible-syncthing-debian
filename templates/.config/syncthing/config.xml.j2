@@ -1,0 +1,102 @@
+<!--
+ ; {{ ansible_managed }}
+//-->
+
+<configuration version="15">
+{% for folder in syncthing_folders %}
+    <folder id="{{ folder.id }}" label="{{ folder.label }}" path="{{ folder.path }}" type="readwrite" rescanIntervalS="60" ignorePerms="false" autoNormalize="true">
+    {% for grp in folder.get('shared_with_groups',[]) %}
+        {% for host in groups[grp] %}
+            {% if 'syncthing_id' in hostvars[host] %}
+        <device id="{{ hostvars[host]['syncthing_id'] }}" name="{{ host }}" compression="metadata" introducer="false"></device>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+    {% for host in folder.get('shared_with_hosts',[]) %}
+        {% if 'syncthing_id' in hostvars[host] %}
+        <device id="{{ hostvars[host]['syncthing_id'] }}" name="{{ host }}" compression="metadata" introducer="false"></device>
+        {% endif %}
+    {% endfor %}
+        <minDiskFreePct>0</minDiskFreePct>
+        <versioning></versioning>
+        <copiers>0</copiers>
+        <pullers>0</pullers>
+        <hashers>0</hashers>
+        <order>random</order>
+        <ignoreDelete>false</ignoreDelete>
+        <scanProgressIntervalS>0</scanProgressIntervalS>
+        <pullerSleepS>0</pullerSleepS>
+        <pullerPauseS>0</pullerPauseS>
+        <maxConflicts>0</maxConflicts>
+        <disableSparseFiles>false</disableSparseFiles>
+        <disableTempIndexes>false</disableTempIndexes>
+    </folder>
+{% endfor %}
+
+{% if syncthing_gui_enable %}
+  {% if syncthing_gui_enable_tls %}
+    <gui enabled="true" tls="true">
+  {% else %}
+    <gui enabled="true" tls="false">
+  {% endif %}
+        <address>{{ syncthing_gui_host }}:{{ syncthing_gui_port }}</address>
+        <user>{{ syncthing_gui_user }}</user>
+        <password>{{ syncthing_gui_password_bcrypt }}</password>
+        <apikey>{{ syncthing_gui_apikey }}</apikey>
+        <theme>default</theme>
+    </gui>
+{% endif %}
+
+    {% for grp in syncthing_net_groups %}
+        {% for host in groups[grp] %}
+            {% if 'syncthing_id' in hostvars[host] %}
+    <device id="{{ hostvars[host]['syncthing_id'] }}" name="{{ host }}" compression="metadata" introducer="false">
+        <address>dynamic</address>
+    </device>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+    {% for host in syncthing_net_hosts %}
+        {% if 'syncthing_id' in hostvars[host] %}
+    <device id="{{ hostvars[host]['syncthing_id'] }}" name="{{ host }}" compression="metadata" introducer="false">
+        <address>dynamic</address>
+    </device>
+        {% endif %}
+    {% endfor %}
+
+
+    <options>
+        <listenAddress>default</listenAddress>
+        <globalAnnounceServer>default</globalAnnounceServer>
+        <globalAnnounceEnabled>false</globalAnnounceEnabled>
+        <localAnnounceEnabled>true</localAnnounceEnabled>
+        <localAnnouncePort>21027</localAnnouncePort>
+        <localAnnounceMCAddr>[ff12::8384]:21027</localAnnounceMCAddr>
+        <maxSendKbps>0</maxSendKbps>
+        <maxRecvKbps>0</maxRecvKbps>
+        <reconnectionIntervalS>60</reconnectionIntervalS>
+        <relaysEnabled>true</relaysEnabled>
+        <relayReconnectIntervalM>10</relayReconnectIntervalM>
+        <startBrowser>true</startBrowser>
+        <natEnabled>false</natEnabled>
+        <natLeaseMinutes>60</natLeaseMinutes>
+        <natRenewalMinutes>30</natRenewalMinutes>
+        <natTimeoutSeconds>10</natTimeoutSeconds>
+        <urAccepted>1</urAccepted>
+        <urUniqueID>6aO7VVps</urUniqueID>
+        <urURL>https://data.syncthing.net/newdata</urURL>
+        <urPostInsecurely>false</urPostInsecurely>
+        <urInitialDelayS>1800</urInitialDelayS>
+        <restartOnWakeup>true</restartOnWakeup>
+        <autoUpgradeIntervalH>12</autoUpgradeIntervalH>
+        <keepTemporariesH>24</keepTemporariesH>
+        <cacheIgnoredFiles>false</cacheIgnoredFiles>
+        <progressUpdateIntervalS>5</progressUpdateIntervalS>
+        <symlinksEnabled>true</symlinksEnabled>
+        <limitBandwidthInLan>false</limitBandwidthInLan>
+        <minHomeDiskFreePct>1</minHomeDiskFreePct>
+        <releasesURL>https://upgrades.syncthing.net/meta.json</releasesURL>
+        <overwriteRemoteDeviceNamesOnConnect>false</overwriteRemoteDeviceNamesOnConnect>
+        <tempIndexMinBlocks>10</tempIndexMinBlocks>
+    </options>
+</configuration>
