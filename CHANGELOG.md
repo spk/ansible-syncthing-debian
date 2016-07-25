@@ -1,4 +1,10 @@
 
+1.3 / 2016-07-25
+==================
+
+  * Fix apt pin for new version
+  * README: use link to defaults/main.yml settings
+
 1.2 / 2016-07-17
 ================
 
