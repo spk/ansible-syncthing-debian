@@ -25,4 +25,4 @@ BSD
 
 ---
 [![Build](https://img.shields.io/travis-ci/spk/ansible-syncthing-debian.svg)](https://travis-ci.org/spk/ansible-syncthing-debian)
-[![Ansible Galaxy](https://img.shields.io/badge/galaxy-spk.syncthing-debian-blue.svg?style=flat)](https://galaxy.ansible.com/spk/syncthing-debian/)
+[![Ansible Galaxy](https://img.shields.io/ansible/role/6761.svg)](https://galaxy.ansible.com/spk/syncthing-debian/)
