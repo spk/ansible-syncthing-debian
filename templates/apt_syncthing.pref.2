@@ -1,9 +1,9 @@
 # {{ ansible_managed }}
 
-Package: syncthing
+Package: {{ syncthing_package }}
 Pin: version {{ syncthing_version }}
-Pin-Priority: 1001
+Pin-Priority: {{ syncthing_pin_priority + 1 }}
 
-Package: syncthing
+Package: {{ syncthing_package }}
 Pin: origin {{ syncthing_apt_repository_host }}
 Pin-Priority: {{ syncthing_pin_priority }}

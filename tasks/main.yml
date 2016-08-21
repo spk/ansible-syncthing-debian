@@ -27,7 +27,7 @@
 
 - name: Install syncthing
   apt:
-    pkg: syncthing={{ syncthing_version }}
+    pkg: "{{ syncthing_package }}={{ syncthing_version }}"
     state: installed
 
 - name: Install ufw syncthing rules
