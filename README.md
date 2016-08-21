@@ -2,6 +2,12 @@
 
 Provides Syncthing Debian packages from <http://apt.syncthing.net/>.
 
+## Installation
+
+```
+ansible-galaxy install spk.syncthing-debian
+```
+
 ## Configurations
 
 See
@@ -19,3 +25,4 @@ BSD
 
 ---
 [![Build](https://img.shields.io/travis-ci/spk/ansible-syncthing-debian.svg)](https://travis-ci.org/spk/ansible-syncthing-debian)
+[![Ansible Galaxy](https://img.shields.io/badge/galaxy-spk.syncthing-debian-blue.svg?style=flat)](https://galaxy.ansible.com/spk/syncthing-debian/)
