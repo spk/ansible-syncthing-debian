@@ -18,7 +18,8 @@
     group: "{{ syncthing_system_group }}"
     mode: 0640
   # TODO : present + absent folders when possible (following supervisor role vars design)
-  notify: restart syncthing
+  #TMP disabled for now
+  #notify: restart syncthing
   tags:
     - syncthing-configure-configuration
 
