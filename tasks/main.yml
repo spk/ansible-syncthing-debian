@@ -10,36 +10,36 @@
     state: installed
   when: not apt_https_transport.stat.exists
 
-- name: Import syncthing GPG key to apt
+- name: Import Syncthing GPG key to apt
   apt_key:
     url: "{{ syncthing_apt_key_url }}"
     state: present
   when: not syncthing_use_debian_repository
 
-- name: Add syncthing repository
+- name: Add Syncthing repository
   apt_repository:
     repo: 'deb {{ syncthing_apt_repository_url }} syncthing release'
     state: present
   when: not syncthing_use_debian_repository
 
-- name: Add syncthing repository preferences
+- name: Add Syncthing repository preferences
   template:
     src: apt_syncthing.pref.2
     dest: /etc/apt/preferences.d/syncthing.pref
 
-- name: Install syncthing from syncthing repository
+- name: Install Syncthing from Syncthing repository
   apt:
     pkg: "{{ syncthing_package }}={{ syncthing_version }}"
     state: installed
   when: not syncthing_use_debian_repository
 
-- name: Install syncthing from Debian repository
+- name: Install Syncthing from Debian repository
   apt:
     pkg: "{{ syncthing_package }}={{ syncthing_version }}+dfsg1-1"
     state: installed
   when: syncthing_use_debian_repository
 
-- name: Install ufw syncthing rules
+- name: Install ufw Syncthing rules
   copy:
     src: ufw-syncthing
     dest: /etc/ufw/applications.d/ufw-syncthing
@@ -47,6 +47,6 @@
     mode: 0644
   when: syncthing_use_ufw
 
-- name: Allow syncthing ufw
+- name: Allow Syncthing ufw
   ufw: rule=allow name=syncthing
   when: syncthing_use_ufw

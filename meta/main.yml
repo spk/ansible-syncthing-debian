@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Laurent Arnoud
-  description: provides syncthing debian packages
+  description: provides Syncthing Debian packages
   license: BSD
   min_ansible_version: 1.9
   platforms:
