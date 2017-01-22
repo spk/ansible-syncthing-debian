@@ -14,21 +14,30 @@
   apt_key:
     url: "{{ syncthing_apt_key_url }}"
     state: present
+  when: not syncthing_use_debian_repository
 
 - name: Add syncthing repository
   apt_repository:
     repo: 'deb {{ syncthing_apt_repository_url }} syncthing release'
     state: present
+  when: not syncthing_use_debian_repository
 
 - name: Add syncthing repository preferences
   template:
     src: apt_syncthing.pref.2
     dest: /etc/apt/preferences.d/syncthing.pref
 
-- name: Install syncthing
+- name: Install syncthing from syncthing repository
   apt:
     pkg: "{{ syncthing_package }}={{ syncthing_version }}"
     state: installed
+  when: not syncthing_use_debian_repository
+
+- name: Install syncthing from Debian repository
+  apt:
+    pkg: "{{ syncthing_package }}={{ syncthing_version }}+dfsg1-1"
+    state: installed
+  when: syncthing_use_debian_repository
 
 - name: Install ufw syncthing rules
   copy:

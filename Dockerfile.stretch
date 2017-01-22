@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM debian:stretch
 
 MAINTAINER Laurent Arnoud <laurent@spkdev.net>
 
@@ -10,7 +10,7 @@ ENV APP_NAME syncthing
 ENV ROLE_NAME ansible-$APP_NAME-debian
 ENV WORKDIR /build/${ROLE_NAME}
 ENV INVENTORY $WORKDIR/tests/inventory
-ENV PLAYBOOK $WORKDIR/tests/test.yml
+ENV PLAYBOOK $WORKDIR/tests/test-stretch.yml
 
 WORKDIR ${WORKDIR}
 

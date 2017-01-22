@@ -1,0 +1,7 @@
+---
+- hosts: localhost
+  remote_user: root
+  vars:
+    syncthing_use_debian_repository: true
+  roles:
+    - ansible-syncthing-debian
