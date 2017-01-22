@@ -1,5 +1,6 @@
 syncthing_package: syncthing
 syncthing_version: "0.14.18"
+syncthing_debian_version: "{{ syncthing_version }}+dfsg1-1"
 syncthing_pin_priority: 1000
 syncthing_use_ufw: false
 syncthing_use_debian_repository: false

@@ -1,5 +1,10 @@
 # {{ ansible_managed }}
 
+{% if syncthing_use_debian_repository %}
+Package: {{ syncthing_package }}
+Pin: version {{ syncthing_debian_version }}
+Pin-Priority: {{ syncthing_pin_priority + 1 }}
+{% else %}
 Package: {{ syncthing_package }}
 Pin: version {{ syncthing_version }}
 Pin-Priority: {{ syncthing_pin_priority + 1 }}
@@ -7,3 +12,4 @@ Pin-Priority: {{ syncthing_pin_priority + 1 }}
 Package: {{ syncthing_package }}
 Pin: origin {{ syncthing_apt_repository_host }}
 Pin-Priority: {{ syncthing_pin_priority }}
+{% endif %}

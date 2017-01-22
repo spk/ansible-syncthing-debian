@@ -35,7 +35,7 @@
 
 - name: Install Syncthing from Debian repository
   apt:
-    pkg: "{{ syncthing_package }}={{ syncthing_version }}+dfsg1-1"
+    pkg: "{{ syncthing_package }}={{ syncthing_debian_version }}"
     state: installed
   when: syncthing_use_debian_repository
 
