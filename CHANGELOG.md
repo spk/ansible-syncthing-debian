@@ -1,4 +1,19 @@
 
+2.0 / 2017-01-22
+==================
+
+  * syncthing => Syncthing
+  * Add support for official Debian repository
+  * Update year
+  * Update setuptools in ci build
+  * README fixes
+  * Add editorconfig
+  * Add syncthing_package variable
+  * README update galaxy badge
+  * Add installation to README
+  * Update Dockerfile using jessie instead of stretch
+  * Update default version to 0.14.4
+
 1.3 / 2016-07-25
 ==================
 
