@@ -1,4 +1,11 @@
 
+2.2 / 2018-09-15
+================
+
+  * Remove jessie and add ubuntu
+  * Update debian version
+  * installed deprecated use present
+
 2.1 / 2017-01-22
 ==================
 
