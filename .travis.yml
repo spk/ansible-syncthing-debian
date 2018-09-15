@@ -5,5 +5,5 @@ services:
   - docker
 
 script:
-  - docker build --file Dockerfile.jessie .
+  - docker build --file Dockerfile.ubuntu .
   - docker build --file Dockerfile.stretch .

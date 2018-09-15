@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM ubuntu:xenial
 
 MAINTAINER Laurent Arnoud <laurent@spkdev.net>
 
@@ -10,7 +10,7 @@ ENV APP_NAME syncthing
 ENV ROLE_NAME ansible-$APP_NAME-debian
 ENV WORKDIR /build/${ROLE_NAME}
 ENV INVENTORY $WORKDIR/tests/inventory
-ENV PLAYBOOK $WORKDIR/tests/test-jessie.yml
+ENV PLAYBOOK $WORKDIR/tests/test-ubuntu.yml
 
 WORKDIR ${WORKDIR}
 
@@ -18,7 +18,7 @@ RUN set -ex \
     && buildDeps='gcc python-dev libyaml-dev libffi-dev libssl-dev' \
     && apt-get update -qqy \
     && apt-get -qqy --no-install-recommends install \
-        python-setuptools python-pip $buildDeps \
+        lsb-release python-setuptools python-pip $buildDeps \
     && pip install --upgrade setuptools \
     && pip install ansible ansible-lint \
     && apt-get purge -y --auto-remove $buildDeps \
@@ -39,4 +39,4 @@ RUN ansible-playbook -i $INVENTORY $PLAYBOOK --connection=local \
     || (echo 'Idempotence test: fail' && exit 1)
 
 USER nobody
-RUN $APP_NAME -version
+RUN $APP_NAME --version
