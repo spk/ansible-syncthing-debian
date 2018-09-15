@@ -7,7 +7,7 @@
 - name: Install HTTPS transport for APT
   apt:
     pkg: apt-transport-https
-    state: installed
+    state: present
   when: not apt_https_transport.stat.exists
 
 - name: Import Syncthing GPG key to apt
@@ -30,13 +30,13 @@
 - name: Install Syncthing from Syncthing repository
   apt:
     pkg: "{{ syncthing_package }}={{ syncthing_version }}"
-    state: installed
+    state: present
   when: not syncthing_use_debian_repository
 
 - name: Install Syncthing from Debian repository
   apt:
     pkg: "{{ syncthing_package }}={{ syncthing_debian_version }}"
-    state: installed
+    state: present
   when: syncthing_use_debian_repository
 
 - name: Install ufw Syncthing rules
