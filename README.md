@@ -4,8 +4,17 @@ Provides Syncthing Debian packages from <http://apt.syncthing.net/>.
 
 ## Installation
 
+### Command line
+
 ```
 ansible-galaxy install spk.syncthing-debian
+```
+
+### Requirements
+
+```
+- src: spk.syncthing-debian
+  version: 'v2.3.0'
 ```
 
 ## Configurations
@@ -19,7 +28,7 @@ None
 
 ## License
 
-(c) 2016-2017 Laurent Arnoud <laurent@spkdev.net>
+(c) 2016-2018 Laurent Arnoud <laurent@spkdev.net>
 
 BSD
 
