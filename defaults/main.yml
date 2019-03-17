@@ -1,9 +1,11 @@
+---
 syncthing_package: syncthing
-syncthing_version: "0.14.50"
-syncthing_debian_version: "{{ syncthing_version }}+ds1-1"
+syncthing_version: "1.0.1"
 syncthing_pin_priority: 1000
 syncthing_use_ufw: false
 syncthing_use_debian_repository: false
+# if syncthing_use_debian_repository is true you can customize version with:
+syncthing_debian_version: "{{ syncthing_version }}~ds1-1+b10"
 syncthing_apt_key_url: 'https://syncthing.net/release-key.txt'
 syncthing_apt_repository_host: apt.syncthing.net
 syncthing_apt_repository_url: 'https://{{ syncthing_apt_repository_host }}/'

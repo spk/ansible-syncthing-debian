@@ -9,12 +9,16 @@
     pkg: apt-transport-https
     state: present
   when: not apt_https_transport.stat.exists
+  register: result
+  until: result is succeeded
 
 - name: Import Syncthing GPG key to apt
   apt_key:
     url: "{{ syncthing_apt_key_url }}"
     state: present
   when: not syncthing_use_debian_repository
+  register: result
+  until: result is succeeded
 
 - name: Add Syncthing repository
   apt_repository:
@@ -32,12 +36,16 @@
     pkg: "{{ syncthing_package }}={{ syncthing_version }}"
     state: present
   when: not syncthing_use_debian_repository
+  register: result
+  until: result is succeeded
 
 - name: Install Syncthing from Debian repository
   apt:
     pkg: "{{ syncthing_package }}={{ syncthing_debian_version }}"
     state: present
   when: syncthing_use_debian_repository
+  register: result
+  until: result is succeeded
 
 - name: Install ufw Syncthing rules
   copy:
