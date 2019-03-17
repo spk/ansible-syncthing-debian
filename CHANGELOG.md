@@ -1,4 +1,15 @@
 
+2.4.0 / 2019-03-17
+==================
+
+  * Update syncthing to 1.0
+
+2.3.0 / 2018-10-28
+==================
+
+  * Update README
+  * Update the metadata to use "galaxy_tags" rather than categories
+
 2.2 / 2018-09-15
 ================
 

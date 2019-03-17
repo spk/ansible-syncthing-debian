@@ -14,7 +14,7 @@ ansible-galaxy install spk.syncthing-debian
 
 ```
 - src: spk.syncthing-debian
-  version: 'v2.3.0'
+  version: 'v2.4.0'
 ```
 
 ## Configurations
@@ -28,7 +28,7 @@ None
 
 ## License
 
-(c) 2016-2018 Laurent Arnoud <laurent@spkdev.net>
+(c) 2016-2019 Laurent Arnoud <laurent@spkdev.net>
 
 BSD
 
